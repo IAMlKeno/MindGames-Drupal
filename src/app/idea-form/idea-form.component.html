@@ -1,7 +1,9 @@
-<p>idea-form works!</p>
+<div class="actions">
+  <button (click)="showForm()" class="button new-idea-button">New Idea</button>
+</div>
 
-<div class="form-group">
-  <form action="" #ideaform="ngForm">
+<div class="form-group" [hidden]="submitted">
+  <form action="" #ideaform="ngForm" (ngSubmit)="onSubmit()">
     <br />
     {{ model | json }}
     <br />
@@ -9,10 +11,11 @@
     <input [(ngModel)]="model.title" type="text" class="form-control" id="title" name="title" required />
 
     <label for="description">Idea Description</label>
-    <textarea [(ngModel)]="model.field_description" class="form-control" id="description" name="description" required></textarea>
+    <textarea [(ngModel)]="model.field_description" class="form-control" id="description" name="description"
+      required></textarea>
 
     <button (click)="newIdea();ideaform.reset()">New Idea</button>
 
-    <input type="submit" value="submit">
+    <input type="submit" value="submit" class="btn btn-success" [disabled]="!ideaform.form.valid">
   </form>
 </div>

@@ -23,9 +23,15 @@ export class IdeaFormComponent implements OnInit {
     this.model = new IdeaModel('', '', []);
   }
 
+  showForm() {
+    this.newIdea();
+    this.submitted = false;
+  }
+
   onSubmit() {
     this.submitted = true;
     console.log('submitted');
+    console.debug(this.model);
   } 
 
 }
