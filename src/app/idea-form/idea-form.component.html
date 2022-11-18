@@ -1,1 +1,18 @@
 <p>idea-form works!</p>
+
+<div class="form-group">
+  <form action="" #ideaform="ngForm">
+    <br />
+    {{ model | json }}
+    <br />
+    <label for="title">Idea Title</label>
+    <input [(ngModel)]="model.title" type="text" class="form-control" id="title" name="title" required />
+
+    <label for="description">Idea Description</label>
+    <textarea [(ngModel)]="model.field_description" class="form-control" id="description" name="description" required></textarea>
+
+    <button>Add a feature</button>
+
+    <input type="submit" value="submit">
+  </form>
+</div>

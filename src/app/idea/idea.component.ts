@@ -30,7 +30,6 @@ export class IdeaComponent implements OnInit {
           featureData.forEach((feature: Feature) => {
             idea.field_features.push(feature);
           });
-          console.debug(idea.field_features);
         })
         this.ideas = ideas;
       });
