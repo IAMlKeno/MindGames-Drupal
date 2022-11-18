@@ -1,0 +1,12 @@
+<p>blogs works!</p>
+<div class="container">
+  <div class="header mt-3 mb-3 ml-3"><h1>Blogs From Drupal</h1></div>
+  <div class="container">
+    <div class="card w-75" *ngFor="let blog of blogs">
+      <div class="card-body">
+        <div [innerHTML]="blog.title" class="text-uppercase font-weight-bold my-3"></div> 
+        <div [innerHTML]="blog.body"></div>
+      </div>
+    </div>
+  </div>
+</div> 

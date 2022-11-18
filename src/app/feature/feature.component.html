@@ -1,0 +1,7 @@
+<p>feature works!</p>
+<div class="card w-75" *ngFor="let feature of features">
+  <div class="card-body">
+    <div [innerHTML]="feature.title" class="text-uppercase font-weight-bold my-3"></div> 
+    <div [innerHTML]="feature.field_description"></div>
+  </div>
+</div>
