@@ -9,7 +9,8 @@ import { IdeaModel } from './idea-model';
 })
 export class IdeaFormComponent implements OnInit {
 
-  model = new IdeaModel({title: 'titke', field_description: 'description', field_features: []});
+  model = new IdeaModel( 'titke', 'description', []);
+  submitted = false;
   // formData;
 
   ngOnInit(): void {
@@ -17,7 +18,10 @@ export class IdeaFormComponent implements OnInit {
     //   idea: new FormControl('idea'),
     // });
   }
-  submitted = false;
+
+  newIdea() {
+    this.model = new IdeaModel('', '', []);
+  }
 
   onSubmit() {
     this.submitted = true;
