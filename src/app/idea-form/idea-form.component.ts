@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { IdeaService } from '../idea/idea.service';
 import { FeatureModel } from './feature-model';
 import { IdeaModel } from './idea-model';
 
@@ -15,6 +16,8 @@ export class IdeaFormComponent implements OnInit {
   submitted = false;
   // formData: FormGroup;
 
+  constructor(private ideaService: IdeaService) {}
+
   ngOnInit(): void {
     // this.formData = new FormGroup({
     //   idea: new FormControl('idea'),
@@ -27,13 +30,11 @@ export class IdeaFormComponent implements OnInit {
 
   newFeature() {
     console.log('adding new feature to form');
-    // const feature = new FeatureModel('', '', this.model.nid);
     const feature = new FeatureModel('', '', 1);
     this.model.field_features.push(feature);
   }
 
   removeFeature(index: number) {
-    // console.log(`index passed: ${index}`);
     this.model.field_features.splice(index, 1);
   }
 
@@ -44,13 +45,14 @@ export class IdeaFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // console.log('submitted');
-    console.debug(this.model);
+    // console.debug(this.model);
     this.createIdeaAndFeaturesInDrupal();
   }
 
   createIdeaAndFeaturesInDrupal() {
     console.log('doing the stuff');
+    this.ideaService.insertNewIdeaAndFeatures(this.model);
   }
+
 }
 

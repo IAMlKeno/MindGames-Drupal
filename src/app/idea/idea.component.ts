@@ -27,9 +27,11 @@ export class IdeaComponent implements OnInit {
         ideas.forEach((idea: Idea) => {
           const featureData = JSON.parse(idea.view);
           idea.field_features = [];
-          featureData.forEach((feature: Feature) => {
-            idea.field_features.push(feature);
-          });
+          if (featureData.length > 0) {
+            featureData.forEach((feature: Feature) => {
+              idea.field_features.push(feature);
+            });
+          }
         })
         this.ideas = ideas;
       });
