@@ -1,7 +1,7 @@
 import { Feature } from '../feature/feature';
 import { Idea } from '../idea/idea';
 
-export class IdeaModel<Idea> {
+export class IdeaModel implements Omit<Idea, "view"> {
 
   public title: string;
   public field_description: string;

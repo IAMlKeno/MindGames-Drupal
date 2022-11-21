@@ -1,6 +1,6 @@
 export interface Feature {
-  nid: number;
+  nid: number | undefined;
   title: string;
   field_description: string;
-  field_idea: number;
+  field_idea: number | undefined;
 }
