@@ -3,4 +3,5 @@ export interface Feature {
   title: string;
   field_description: string;
   field_idea: number | undefined;
+  uuid: string;
 }

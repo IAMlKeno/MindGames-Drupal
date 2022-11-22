@@ -1,6 +1,6 @@
 import { Feature } from '../feature/feature';
 
-export class FeatureModel implements Feature {
+export class FeatureModel implements Omit<Feature, 'uuid'> {
   public nid: number | undefined;
   public title: string;
   public field_description: string;
@@ -10,7 +10,7 @@ export class FeatureModel implements Feature {
     title: string,
     description: string,
     ideaId: number | undefined,
-    nid?: number | undefined  
+    nid?: number | undefined
   ) {
     this.title = title;
     this.field_description = description;

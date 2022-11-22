@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Feature } from '../feature/feature';
 import { Idea } from '../idea/idea';
 import { IdeaService } from '../idea/idea.service';
 import { FeatureModel } from './feature-model';
@@ -37,7 +38,7 @@ export class IdeaFormComponent implements OnInit {
 
   newFeature() {
     const feature = new FeatureModel('', '', 1);
-    this.model?.field_features.push(feature);
+    this.model?.field_features.push(feature as Feature);
     // this.editModel?.field_features.push(feature);
   }
 

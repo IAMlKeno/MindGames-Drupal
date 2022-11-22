@@ -13,9 +13,10 @@
   <div class="card-body">
     <div [innerHTML]="idea.field_description" class="idea-description"></div>
     <div class="idea-features">
-      <div *ngFor="let feature of idea.field_features">
-        <div [innerHTML]="feature.title" class="feature-title"></div>
+      <div *ngFor="let feature of idea.field_features" class="idea-features">
+        <h3 [innerHTML]="feature.title" class="feature-title"></h3>
         <div [innerHTML]="feature.field_description" class="feature-description"></div>
+        {{ feature.uuid }} // TODO: remove this
       </div>
     </div>
   </div>

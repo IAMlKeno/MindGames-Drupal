@@ -116,24 +116,40 @@ export class IdeaService {
     if (idea.field_features.length <= 0)
       return;
 
-    // idea.field_features.forEach((feature: Feature) => {
-    //   const body = {
-    //     "data": {
-    //       "type": "node--feature",
-    //       "id": idea.uuid,
-    //       "attributes": {
-    //         "title": feature.title,
-    //         "field_description": feature.field_description
-    //       }
-    //     }
-    //   };
-    //   // update the features
-    // });
+    idea.field_features.forEach((feature: Feature) => {
+      const body = {
+        "data": {
+          "type": "node--feature",
+          "id": feature.uuid,
+          "attributes": {
+            "title": feature.title,
+            "field_description": feature.field_description
+          }
+        }
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json',
+          'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+        }
+      };
+      // update the features
+      this.http.patch(`${this.featureInsertUrl}/${feature.uuid}`, body, options)
+        .subscribe({
+          error: e => console.log(`Failed to update the feature ${feature.nid}`)
+        });
+    });
+    console.log("Done updating idea");
+  }
+
+  _getFeaturesByIdeaUuid(uuid: string): Observable<Feature[]> {
+    return this.http.get<Feature[]>(`${this.featureByIdeaUuid}${uuid}`);
   }
 
   deleteIdea(uuid: string) {
     console.debug(`deleting uuid: ${uuid}`);
-    this.http.get(`${this.featureByIdeaUuid}${uuid}`)
+    this._getFeaturesByIdeaUuid(uuid)
       .subscribe({
         next: (data: any) => {
           // delete features
