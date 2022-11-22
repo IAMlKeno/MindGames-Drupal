@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Feature } from '../feature/feature';
+import { IdeaModel } from '../idea-form/idea-model';
 import { Idea } from './idea';
 import { IdeaService } from './idea.service';
 
@@ -14,6 +15,7 @@ export class IdeaComponent implements OnInit {
   ideas: Idea[] | undefined;
   features: [number, Feature][] | undefined;
   ideaFormControl = new FormControl('');
+  modelToEdit: IdeaModel | undefined;
 
   constructor(private ideaService: IdeaService) {}
 
@@ -35,6 +37,15 @@ export class IdeaComponent implements OnInit {
         })
         this.ideas = ideas;
       });
+  }
+
+  editIdea(idea: IdeaModel) {
+    console.log(idea);
+    this.modelToEdit = idea;
+  }
+
+  deleteIdea(uuid: string) {
+    this.ideaService.deleteIdea(uuid);
   }
 
 }

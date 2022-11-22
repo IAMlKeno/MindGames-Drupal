@@ -15,6 +15,7 @@ export class IdeaService {
   private ideaUrl = 'http://localhost/api/mindgames?_format=json';
   private ideaInsertUrl = 'http://localhost/jsonapi/node/idea';
   private featureInsertUrl = 'http://localhost/jsonapi/node/feature';
+  private featureByIdeaUuid = 'http://localhost/jsonapi/node/feature?filter[field_idea.id]='
 
   constructor(private http: HttpClient) {}
 
@@ -86,5 +87,53 @@ export class IdeaService {
       }); // options
   }
 
-  updateIdea() {}
+  updateIdea(uuid: string) {
+    // const body = {
+    //   "data": {
+    //       "type": "node--idea",
+    //       "id": uuid,
+    //       "attributes": {
+    //           "title": "Super Cool Idea modified with Patch"
+    //       }
+    //   }
+    // }
+  }
+
+  deleteIdea(uuid: string) {
+    console.debug(`deleting uuid: ${uuid}`);
+    this.http.get(`${this.featureByIdeaUuid}${uuid}`)
+      .subscribe({
+        next: (data: any) => {
+          // delete features
+          data.data.forEach((feature: any) => {
+            this.http.delete(`${this.featureInsertUrl}/${feature.id}`, {
+              headers: {
+                'Content-Type': 'application/vnd.api+json',
+                'Accept': 'application/vnd.api+json',
+                'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+             }
+            })
+            .subscribe({
+              next: (d) => console.log('deleted feature'),
+              error: (e) => console.log(`failed to delete a feature with id ${feature.id} \n ${e}`)
+            });
+          });
+          // then delete idea
+          this.http.delete(`${this.ideaInsertUrl}/${uuid}`, {
+            headers: {
+              'Content-Type': 'application/vnd.api+json',
+              'Accept': 'application/vnd.api+json',
+              'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+           }
+          })
+          .subscribe({
+            next: d => console.log('deleted idea'),
+            error: e => console.log(`Failed to delete the idea with id ${uuid} \n ${e}`)
+          });
+        },
+        error: (e) => console.debug(e),
+        complete: () => console.log('deletion of idea and features is complete')
+      });
+  }
+
 }

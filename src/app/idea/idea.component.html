@@ -1,9 +1,15 @@
 <div class="idea-form-container">
-  <app-idea-form></app-idea-form>
+  <app-idea-form [editModel]="modelToEdit"></app-idea-form>
 </div>
 
 <div class="card w-75" *ngFor="let idea of ideas">
   <div class="idea-title card-title"><h1 [innerHTML]="idea.title"></h1></div>
+  <div class="actions">
+    {{idea.uuid}} // TODO: rmove this<br />
+    <button type="button" (click)="deleteIdea(idea.uuid)">Delete Idea</button>
+    <br />
+    <button type="button" (click)="editIdea(idea)">Edit This Idea</button>
+  </div>
   <div class="card-body">
     <div [innerHTML]="idea.field_description" class="idea-description"></div>
     <div class="idea-features">
@@ -12,7 +18,5 @@
         <div [innerHTML]="feature.field_description" class="feature-description"></div>
       </div>
     </div>
-    <!-- <div [innerHTML]="idea.view" class="idea-features"></div> -->
-    <!-- <div [innerHTML]="features" class="idea-features"></div> -->
   </div>
 </div>
