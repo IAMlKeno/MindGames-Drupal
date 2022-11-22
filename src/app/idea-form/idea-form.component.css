@@ -1,0 +1,8 @@
+.actions {
+  display: inline-block;
+}
+
+.actions .button {
+  border: 1px solid red;
+  margin-right: 15px;
+}

@@ -1,9 +1,11 @@
+<!-- {{ editModel | json }} -->
+
 <div class="actions">
   <button (click)="showForm()" class="button new-idea-button">New Idea</button>
 </div>
 
 <div class="form-group" [hidden]="submitted">
-  <form action="" #ideaform="ngForm" (ngSubmit)="onSubmit()">
+  <form action="" #ideaform="ngForm" (ngSubmit)="onSubmit(ideaform.value)">
     <br />
     {{ model | json }}
     <br />
@@ -46,11 +48,12 @@
         </div>
       <hr />
     </div>
+    <input [(ngModel)]="isNew" type="hidden"  name="isNew" />
 
-    <button (click)="newIdea();ideaform.reset()">New Idea</button>
-    <br>
-    <button (click)="newFeature()" type="button" class="button">New Feature</button>
-    <br>
-    <input type="submit" value="submit" class="btn btn-success" [disabled]="!ideaform.form.valid">
+    <div class="actions">
+      <button (click)="showForm()" type="button" class="button new-idea-button">New Idea</button>
+      <button (click)="newFeature()" type="button" class="button new-idea-button">New Feature</button>
+      <input type="submit" value="submit" class="btn btn-success button" [disabled]="!ideaform.form.valid">
+    </div>
   </form>
 </div>

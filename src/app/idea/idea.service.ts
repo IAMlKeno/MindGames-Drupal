@@ -87,16 +87,48 @@ export class IdeaService {
       }); // options
   }
 
-  updateIdea(uuid: string) {
-    // const body = {
-    //   "data": {
-    //       "type": "node--idea",
-    //       "id": uuid,
+  updateIdea(idea: Idea) {
+    console.log(idea);
+    const body = {
+      "data": {
+        "type": "node--idea",
+        "id": idea.uuid,
+        "attributes": {
+          "title": idea.title,
+          "field_description": idea.field_description
+        }
+      }
+    };
+    const options = {
+      headers: {
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json',
+        'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+      }
+    };
+
+    this.http.patch(`${this.ideaInsertUrl}/${idea.uuid}`, body, options)
+      .subscribe({
+        error: (e) => console.debug(`Failed to update the idea with id: ${idea.nid}`)
+      });
+
+    // update the features
+    if (idea.field_features.length <= 0)
+      return;
+
+    // idea.field_features.forEach((feature: Feature) => {
+    //   const body = {
+    //     "data": {
+    //       "type": "node--feature",
+    //       "id": idea.uuid,
     //       "attributes": {
-    //           "title": "Super Cool Idea modified with Patch"
+    //         "title": feature.title,
+    //         "field_description": feature.field_description
     //       }
-    //   }
-    // }
+    //     }
+    //   };
+    //   // update the features
+    // });
   }
 
   deleteIdea(uuid: string) {

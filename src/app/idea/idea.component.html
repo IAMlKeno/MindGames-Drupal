@@ -1,5 +1,5 @@
 <div class="idea-form-container">
-  <app-idea-form [editModel]="modelToEdit"></app-idea-form>
+  <app-idea-form [model]="modelToEdit" [isNew]="isNew"></app-idea-form>
 </div>
 
 <div class="card w-75" *ngFor="let idea of ideas">

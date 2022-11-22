@@ -15,7 +15,8 @@ export class IdeaComponent implements OnInit {
   ideas: Idea[] | undefined;
   features: [number, Feature][] | undefined;
   ideaFormControl = new FormControl('');
-  modelToEdit: IdeaModel | undefined;
+  modelToEdit: IdeaModel;
+  isNew: boolean;
 
   constructor(private ideaService: IdeaService) {}
 
@@ -42,6 +43,7 @@ export class IdeaComponent implements OnInit {
   editIdea(idea: IdeaModel) {
     console.log(idea);
     this.modelToEdit = idea;
+    this.isNew = false;
   }
 
   deleteIdea(uuid: string) {
