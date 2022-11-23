@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { Idea } from "./idea";
 import { Feature } from "../feature/feature";
 import { IdeaModel } from "../idea-form/idea-model";
-import { waitForAsync } from "@angular/core/testing";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class IdeaService {
   private featureInsertUrl = 'http://localhost/jsonapi/node/feature';
   private featureByIdeaUuid = 'http://localhost/jsonapi/node/feature?filter[field_idea.id]='
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getIdeas(): Observable<Idea[]> {
     return this.http.get<Idea[]>(this.ideaUrl);
@@ -31,60 +30,12 @@ export class IdeaService {
           idea.field_features.forEach(feature => {
             feature.field_idea = data.data.id;
             const insertedFeature = this._insertFeature(feature)
-              .subscribe(data => {console.log(data)});
+              .subscribe(data => { console.log(data) });
           });
         },
         error: (e) => console.log(e),
         complete: () => console.log('done')
       });
-  }
-
-  private _insertIdea(idea: Partial<Idea>): Observable<Idea> {
-    return this.http.post<Idea>(this.ideaInsertUrl,
-      {
-        "data": {
-          "type": "node--idea",
-          "attributes": {
-            "title": idea.title,
-            "field_description": idea.field_description
-          }
-        }
-      }, //body
-      {
-        headers: {
-          'Content-Type': 'application/vnd.api+json',
-          'Accept': 'application/vnd.api+json',
-          'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
-        }
-      }); // options
-  }
-
-  private _insertFeature(feature: Feature): Observable<Feature> {
-    return this.http.post<Feature>(this.featureInsertUrl,
-      {
-        "data": {
-          "type": "node--feature",
-          "attributes": {
-            "title": feature.title,
-            "field_description": feature.field_description
-          },
-          "relationships": {
-            "field_idea": {
-              "data": {
-                "type": "node--idea",
-                "id": feature.field_idea
-              }
-            }
-          }
-        }
-      }, //body
-      {
-        headers: {
-          'Content-Type': 'application/vnd.api+json',
-          'Accept': 'application/vnd.api+json',
-          'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
-        }
-      }); // options
   }
 
   updateIdea(idea: Idea) {
@@ -143,10 +94,6 @@ export class IdeaService {
     console.log("Done updating idea");
   }
 
-  _getFeaturesByIdeaUuid(uuid: string): Observable<Feature[]> {
-    return this.http.get<Feature[]>(`${this.featureByIdeaUuid}${uuid}`);
-  }
-
   deleteIdea(uuid: string) {
     console.debug(`deleting uuid: ${uuid}`);
     this._getFeaturesByIdeaUuid(uuid)
@@ -159,12 +106,12 @@ export class IdeaService {
                 'Content-Type': 'application/vnd.api+json',
                 'Accept': 'application/vnd.api+json',
                 'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
-             }
+              }
             })
-            .subscribe({
-              next: (d) => console.log('deleted feature'),
-              error: (e) => console.log(`failed to delete a feature with id ${feature.id} \n ${e}`)
-            });
+              .subscribe({
+                next: (d) => console.log('deleted feature'),
+                error: (e) => console.log(`failed to delete a feature with id ${feature.id} \n ${e}`)
+              });
           });
           // then delete idea
           this.http.delete(`${this.ideaInsertUrl}/${uuid}`, {
@@ -172,16 +119,68 @@ export class IdeaService {
               'Content-Type': 'application/vnd.api+json',
               'Accept': 'application/vnd.api+json',
               'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
-           }
+            }
           })
-          .subscribe({
-            next: d => console.log('deleted idea'),
-            error: e => console.log(`Failed to delete the idea with id ${uuid} \n ${e}`)
-          });
+            .subscribe({
+              next: d => console.log('deleted idea'),
+              error: e => console.log(`Failed to delete the idea with id ${uuid} \n ${e}`)
+            });
         },
         error: (e) => console.debug(e),
         complete: () => console.log('deletion of idea and features is complete')
       });
+  }
+
+  private _insertIdea(idea: Partial<Idea>): Observable<Idea> {
+    return this.http.post<Idea>(this.ideaInsertUrl,
+      {
+        "data": {
+          "type": "node--idea",
+          "attributes": {
+            "title": idea.title,
+            "field_description": idea.field_description
+          }
+        }
+      }, //body
+      {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json',
+          'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+        }
+      }); // options
+  }
+
+  private _insertFeature(feature: Feature): Observable<Feature> {
+    return this.http.post<Feature>(this.featureInsertUrl,
+      {
+        "data": {
+          "type": "node--feature",
+          "attributes": {
+            "title": feature.title,
+            "field_description": feature.field_description
+          },
+          "relationships": {
+            "field_idea": {
+              "data": {
+                "type": "node--idea",
+                "id": feature.field_idea
+              }
+            }
+          }
+        }
+      }, //body
+      {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json',
+          'Authorization': 'Basic anNfdXNlcjpqc191c2Vy'
+        }
+      }); // options
+  }
+
+  private _getFeaturesByIdeaUuid(uuid: string): Observable<Feature[]> {
+    return this.http.get<Feature[]>(`${this.featureByIdeaUuid}${uuid}`);
   }
 
 }

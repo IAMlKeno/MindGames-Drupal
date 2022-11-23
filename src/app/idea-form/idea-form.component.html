@@ -1,13 +1,9 @@
-<!-- {{ editModel | json }} -->
-
 <div class="actions">
   <button (click)="showForm()" class="button new-idea-button">New Idea</button>
 </div>
 
 <div class="form-group" [hidden]="submitted">
   <form action="" #ideaform="ngForm" (ngSubmit)="onSubmit(ideaform.value)">
-    <br />
-    {{ model | json }}
     <br />
     <label for="title">Idea Title</label>
     <input [(ngModel)]="model.title" type="text" class="form-control" id="title" name="title" required />
