@@ -28,6 +28,7 @@ export class IdeaService {
       .subscribe({
         next: (data: any) => {
           idea.field_features.forEach(feature => {
+            // uuid of the idea
             feature.field_idea = data.data.id;
             const insertedFeature = this._insertFeature(feature)
               .subscribe(data => { console.log(data) });
@@ -58,16 +59,28 @@ export class IdeaService {
       }
     };
 
+    // Update the idea
     this.http.patch(`${this.ideaInsertUrl}/${idea.uuid}`, body, options)
       .subscribe({
         error: (e) => console.debug(`Failed to update the idea with id: ${idea.nid}`)
       });
 
-    // update the features
-    if (idea.field_features.length <= 0)
+      
+      // update the features
+      if (idea.field_features.length <= 0)
       return;
-
+      
     idea.field_features.forEach((feature: Feature) => {
+      // if a feature does not have field_idea, its a new feature.
+      if (feature.nid == undefined) {
+        feature.field_idea = idea.uuid;
+        console.log(feature);
+        this._insertFeature(feature).subscribe({
+          error: (e) => { console.log(`An error occurred inserting new feature during update`); },
+          complete: () => { console.log(`Completed the attempt to insert new feature during update`); }
+        });
+        return;
+      }
       const body = {
         "data": {
           "type": "node--feature",

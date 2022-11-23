@@ -13,11 +13,9 @@ import { IdeaModel } from './idea-model';
 })
 export class IdeaFormComponent implements OnInit {
 
-  // @Input() editModel: IdeaModel|undefined;
   @Input() model: IdeaModel;
   @Input() isNew: boolean;
 
-  // model = new IdeaModel('titke', 'description', [new FeatureModel('t1', 't1d', 1), new FeatureModel('t2', 't2d', 1)]);
   submitted = false;
 
   constructor(private ideaService: IdeaService) {}
@@ -37,14 +35,12 @@ export class IdeaFormComponent implements OnInit {
   }
 
   newFeature() {
-    const feature = new FeatureModel('', '', 1);
+    const feature = new FeatureModel('', '', '1');
     this.model?.field_features.push(feature as Feature);
-    // this.editModel?.field_features.push(feature);
   }
 
   removeFeature(index: number) {
     this.model?.field_features.splice(index, 1);
-    // this.editModel?.field_features.splice(index, 1);
   }
 
   showForm() {
@@ -54,20 +50,16 @@ export class IdeaFormComponent implements OnInit {
 
   onSubmit(form: any) {
     if (form.isNew){
-      // console.log(`form new ${form.isNew}`);
-      // this.createIdeaAndFeaturesInDrupal();
+       this._createIdeaAndFeaturesInDrupal();
     }
     else {
-      // console.log(`form is not new ${form.isNew}`);
-      // console.log(this.model);
       this.ideaService.updateIdea(this.model as Idea);
     }
-    // this.submitted = true;
+    this.submitted = true;
   }
 
-  createIdeaAndFeaturesInDrupal() {
+  private _createIdeaAndFeaturesInDrupal() {
     this.ideaService.insertNewIdeaAndFeatures(this.model as IdeaModel);
-    // this.ideaService.insertNewIdeaAndFeatures(this.editModel as IdeaModel);
   }
 
 }
