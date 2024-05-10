@@ -1,0 +1,37 @@
+services:
+  app:
+    container_name: mindgames_ng
+    build:
+      context: ./app
+      dockerfile: app.Dockerfile
+    ports:
+      - 4200:4200
+    expose:
+      - 4200
+    volumes:
+      - ./app:/project
+  cms:
+    container_name: mindgames_cms
+    build:
+      context: ./drupal
+      dockerfile: cms.Dockerfile
+    ports:
+      - 8086:80
+    volumes:
+      - ./drupal/files:/opt/drupal/web/sites/default/files
+      - ./drupal/custom/modules:/opt/drupal/web/modules/custom
+      - ./drupal/custom/themes:/opt/drupal/web/themes/custom
+      - ./drupal/config/sync:/opt/drupal/config/sync
+  db:
+    container_name: mindgames_db
+    image: arm64v8/mysql
+    environment:
+      MYSQL_DATABASE: 'mindgames'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    expose:
+      - 3306
+    restart: always
+    volumes:
+      - ./data/database/data:/var/lib/mysql
