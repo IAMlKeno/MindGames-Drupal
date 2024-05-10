@@ -1,0 +1,18 @@
+uuid: 57f59d6a-81cb-4fa4-9489-c3915b562910
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Idea
+type: idea
+description: 'This is the base premise of some project - such as a website, blog, or physical undertaking.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,19 @@
+uuid: a5784806-7f1b-4772-8605-8515552b3c7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.feature
+id: node.feature.field_summary
+field_name: field_summary
+entity_type: node
+bundle: feature
+label: Summary
+description: 'A short, descriptive blurb about the feature - for quick viewing'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

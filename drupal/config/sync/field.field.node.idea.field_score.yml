@@ -1,0 +1,23 @@
+uuid: 3d2289b0-55b7-4235-bbf4-face9ddc29ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_score
+    - node.type.idea
+  module:
+    - options
+id: node.idea.field_score
+field_name: field_score
+entity_type: node
+bundle: idea
+label: Score
+description: 'An arbitrary rating of how much priority an idea has. The higher the priority, the more emphasis will be placed on the idea.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 3
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

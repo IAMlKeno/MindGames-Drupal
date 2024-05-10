@@ -1,0 +1,76 @@
+uuid: a5a59163-21d6-4fba-a698-70f793007036
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.idea.field_completed
+    - field.field.node.idea.field_description
+    - field.field.node.idea.field_features
+    - field.field.node.idea.field_in_progress
+    - field.field.node.idea.field_score
+    - field.field.node.idea.field_summary
+    - node.type.idea
+  module:
+    - options
+    - user
+id: node.idea.default
+targetEntityType: node
+bundle: idea
+mode: default
+content:
+  field_completed:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_description:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_features:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_in_progress:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_score:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_summary:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

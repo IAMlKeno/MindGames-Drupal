@@ -1,0 +1,32 @@
+uuid: 3576235a-7e9b-4c80-b41c-b95418bf6236
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.idea.field_completed
+    - field.field.node.idea.field_description
+    - field.field.node.idea.field_features
+    - field.field.node.idea.field_in_progress
+    - field.field.node.idea.field_score
+    - field.field.node.idea.field_summary
+    - node.type.idea
+  module:
+    - user
+id: node.idea.teaser
+targetEntityType: node
+bundle: idea
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_completed: true
+  field_description: true
+  field_features: true
+  field_in_progress: true
+  field_score: true
+  field_summary: true

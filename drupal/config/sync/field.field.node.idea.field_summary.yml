@@ -1,0 +1,19 @@
+uuid: ceea1df0-e843-4263-a195-d2e8ac49dcf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.idea
+id: node.idea.field_summary
+field_name: field_summary
+entity_type: node
+bundle: idea
+label: Summary
+description: 'A short, descriptive blurb about the idea - for quick viewing'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

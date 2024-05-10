@@ -1,0 +1,18 @@
+uuid: c43b2677-b024-42ef-81ba-2a6d11735851
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Feature
+type: feature
+description: 'Features or properties of the idea that should stand out!'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

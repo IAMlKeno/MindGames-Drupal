@@ -1,0 +1,19 @@
+uuid: 7272486b-8ad6-432d-9fee-7d8a6675a59b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.feature
+id: node.feature.field_description
+field_name: field_description
+entity_type: node
+bundle: feature
+label: Description
+description: 'Detailed description of the feature. This could include its goal, and desired timeline.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
