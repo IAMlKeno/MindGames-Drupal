@@ -1,3 +1,4 @@
 .vscode
 data/database/data
 drupal/files
+app/node_modules

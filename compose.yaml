@@ -10,6 +10,7 @@ services:
       - 4200
     volumes:
       - ./app:/project
+      - /project/node_modules
   cms:
     container_name: mindgames_cms
     build:

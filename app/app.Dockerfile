@@ -1,9 +1,11 @@
-FROM node:17.0.1-bullseye-slim
+FROM node:22-bookworm-slim
 
-RUN mkdir /project
 WORKDIR /project
 
 RUN npm install -g @angular/cli
-# RUN npm ci
+
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
 
 CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
