@@ -2,6 +2,9 @@
   <app-idea-form [model]="modelToEdit" [isNew]="isNew"></app-idea-form>
 </div>
 
+<div>
+  <h1>Ideas</h1>
+</div>
 <div class="card w-75" *ngFor="let idea of ideas">
   <div class="idea-title card-title"><h1 [innerHTML]="idea.title"></h1></div>
   <div class="actions">

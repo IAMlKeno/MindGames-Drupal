@@ -10,11 +10,12 @@ import { IdeaModel } from "../idea-form/idea-model";
 })
 
 export class IdeaService {
-
-  private ideaUrl = 'http://localhost/api/mindgames?_format=json';
-  private ideaInsertUrl = 'http://localhost/jsonapi/node/idea';
-  private featureInsertUrl = 'http://localhost/jsonapi/node/feature';
-  private featureByIdeaUuid = 'http://localhost/jsonapi/node/feature?filter[field_idea.id]='
+  private url = 'http://mindgames_cms:8086';
+  private ideaUrl = `${this.url}/api/mindgames?_format=json`;
+  private ideaAndFeaturesUrl = `${this.url}/api/mindgames/details?_format=json`;
+  private ideaInsertUrl = `${this.url}/jsonapi/node/idea`;
+  private featureInsertUrl = `${this.url}/jsonapi/node/feature`;
+  private featureByIdeaUuid = `${this.url}/jsonapi/node/feature?filter[field_idea.id]=`
 
   constructor(private http: HttpClient) { }
 
