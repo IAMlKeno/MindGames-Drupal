@@ -1,3 +1,7 @@
+networks:
+  mindgames-network:
+    driver: bridge
+
 services:
   app:
     container_name: mindgames_ng
@@ -11,6 +15,8 @@ services:
     volumes:
       - ./app:/project
       - /project/node_modules
+    networks:
+      - mindgames-network
   cms:
     container_name: mindgames_cms
     build:
@@ -18,11 +24,15 @@ services:
       dockerfile: cms.Dockerfile
     ports:
       - 8086:80
+    expose:
+      - 80
     volumes:
       - ./drupal/files:/opt/drupal/web/sites/default/files
       - ./drupal/custom/modules:/opt/drupal/web/modules/custom
       - ./drupal/custom/themes:/opt/drupal/web/themes/custom
       - ./drupal/config/sync:/opt/drupal/config/sync
+    networks:
+      - mindgames-network
   db:
     container_name: mindgames_db
     image: arm64v8/mysql
@@ -36,3 +46,5 @@ services:
     restart: always
     volumes:
       - ./data/database/data:/var/lib/mysql
+    networks:
+      - mindgames-network
