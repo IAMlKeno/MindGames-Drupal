@@ -27,15 +27,15 @@ export class IdeaComponent implements OnInit {
   getIdeas(): void {
     this.ideaService.getIdeas()
       .subscribe((ideas) => {
-        // ideas.forEach((idea: Idea) => {
-        //   const featureData = JSON.parse(idea.view);
-        //   idea.field_features = [];
-        //   if (featureData.length > 0) {
-        //     featureData.forEach((feature: Feature) => {
-        //       idea.field_features.push(feature);
-        //     });
-        //   }
-        // })
+        ideas.forEach((idea: any) => {
+          const featureData = JSON.parse(idea.field_features);
+          idea.field_features = [];
+          if (featureData.length > 0) {
+            featureData.forEach((feature: Feature) => {
+              idea.field_features.push(feature);
+            });
+          }
+        })
         this.ideas = ideas;
       });
   }

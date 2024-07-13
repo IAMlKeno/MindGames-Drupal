@@ -20,7 +20,9 @@ export class IdeaService {
   constructor(private http: HttpClient) { }
 
   getIdeas(): Observable<Idea[]> {
-    return this.http.get<Idea[]>(this.ideaUrl);
+    const response = this.http.get<Idea[]>(this.ideaAndFeaturesUrl);
+
+    return response;
   }
 
   async insertNewIdeaAndFeatures(idea: IdeaModel) {
