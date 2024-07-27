@@ -1,0 +1,15 @@
+h1 {
+  margin: auto;
+  text-align: center;
+}
+
+.mindmap {
+  border: 2px solid red;
+  min-width: 100%;
+  min-height: 300px;
+}
+#jsmind_container {
+  float: left;
+  width: 100%;
+  height: 800px;
+}

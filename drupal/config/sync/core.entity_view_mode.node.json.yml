@@ -1,0 +1,11 @@
+uuid: 75763d53-3838-4131-af5c-3fff90f61431
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.json
+label: JSON
+description: 'Json rendering of entity fields'
+targetEntityType: node
+cache: true

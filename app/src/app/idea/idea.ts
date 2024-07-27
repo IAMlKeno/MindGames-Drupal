@@ -5,6 +5,6 @@ export interface Idea {
   uuid: string;
   title: string;
   field_description: string;
-  field_features: Feature[];
-  view: string;
+  field_features: Feature[] | [];
+  view: string | undefined;
 }

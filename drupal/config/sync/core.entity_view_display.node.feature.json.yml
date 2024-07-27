@@ -1,0 +1,41 @@
+uuid: c7b7b954-6051-4706-8358-23735d794346
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.json
+    - field.field.node.feature.field_description
+    - field.field.node.feature.field_part_of
+    - field.field.node.feature.field_summary
+    - node.type.feature
+  module:
+    - user
+id: node.feature.json
+targetEntityType: node
+bundle: feature
+mode: json
+content:
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_part_of:
+    type: entity_reference_entity_id
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  links: true

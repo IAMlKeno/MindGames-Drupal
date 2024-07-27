@@ -5,10 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { BlogsComponent } from './blogs/blogs.component';
 import { IdeaComponent } from './idea/idea.component';
+import { MindmapComponent } from './mindmap/mindmap.component';
 
 const routes: Routes = [
   { path: 'blogs', component: BlogsComponent },
-  { path: 'ideas', component: IdeaComponent }
+  { path: 'ideas', component: IdeaComponent },
+  { path: 'mindmap', component: MindmapComponent }
 ];
 
 @NgModule({
