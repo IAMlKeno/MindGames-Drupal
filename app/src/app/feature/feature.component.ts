@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Feature } from './feature';
 
 @Component({
@@ -7,7 +7,7 @@ import { Feature } from './feature';
   styleUrls: ['./feature.component.css']
 })
 export class FeatureComponent {
+  @Input() features: Feature[] | undefined;
 
-  features: Feature[] | undefined;
-
+  constructor() {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Feature } from '../feature/feature';
 import { IdeaModel } from '../idea-form/idea-model';
@@ -8,7 +8,7 @@ import { IdeaService } from './idea.service';
 @Component({
   selector: 'app-idea',
   templateUrl: './idea.component.html',
-  styleUrls: ['./idea.component.css']
+  styleUrls: ['./idea.component.css'],
 })
 export class IdeaComponent implements OnInit {
 
@@ -17,6 +17,7 @@ export class IdeaComponent implements OnInit {
   ideaFormControl = new FormControl('');
   modelToEdit: IdeaModel;
   isNew: boolean;
+  // @ViewChild(FeatureComponent) featureComponent: FeatureComponent;
 
   constructor(private ideaService: IdeaService) {}
 
@@ -26,7 +27,7 @@ export class IdeaComponent implements OnInit {
 
   getIdeas(): void {
     this.ideaService.getIdeas()
-      .subscribe((ideas) => {
+      .subscribe((ideas: any) => {
         ideas.forEach((idea: any) => {
           const featureData = JSON.parse(idea.field_features);
           idea.field_features = [];
@@ -35,6 +36,7 @@ export class IdeaComponent implements OnInit {
               idea.field_features.push(feature);
             });
           }
+          // this.featureComponent.push(new FeatureComponent(idea.field_features));
         })
         this.ideas = ideas;
       });

@@ -1,6 +1,7 @@
 <div class="idea-form-container">
   <app-idea-form [model]="modelToEdit" [isNew]="isNew"></app-idea-form>
 </div>
+<mat-slide-toggle>Toggle me!</mat-slide-toggle>
 
 <div>
   <h1>Ideas</h1>
@@ -16,11 +17,8 @@
   <div class="card-body">
     <div [innerHTML]="idea.field_description" class="idea-description"></div>
     <div class="idea-features">
-      <div *ngFor="let feature of idea.field_features" class="idea-features">
-        <h3 [innerHTML]="feature.title" class="feature-title"></h3>
-        <div [innerHTML]="feature.field_description" class="feature-description"></div>
-        {{ feature.uuid }} // TODO: remove this
-      </div>
+      <app-feature [features]="idea.field_features"></app-feature>
+      <hr />
     </div>
   </div>
 </div>

@@ -9,8 +9,10 @@ import { IdeaComponent } from './idea/idea.component';
 import { FeatureComponent } from './feature/feature.component';
 import { IdeaFormComponent } from './idea-form/idea-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { DynamicFormComponent } from './dynamic-form.component';
-// import { DynamicFormQuestionComponent } from './dynamic-form-question.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
