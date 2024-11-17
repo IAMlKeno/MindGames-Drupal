@@ -9,9 +9,9 @@ services:
       context: ./app
       dockerfile: app.Dockerfile
     ports:
-      - 4200:4200
+      - 4201:8080
     expose:
-      - 4200
+      - 4201
     volumes:
       - ./app:/project
       - /project/node_modules
