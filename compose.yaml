@@ -15,7 +15,7 @@ services:
       - 5173
     volumes:
       - ./app:/project
-      - /project/node_modules
+      - ./app/node_modules:/project/node_modules
     networks:
       - mindgames-network
   cms:

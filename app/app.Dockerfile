@@ -2,8 +2,8 @@ FROM node:22-bookworm-slim
 
 WORKDIR /project
 
-COPY package.json ./
-RUN npm install
 COPY . .
+RUN chmod a+x /project/entry.sh
 
-CMD ["npm", "run", "dev", "--", "--open"]
+ENTRYPOINT [ "./entry.sh" ]
+# CMD ["npm", "run", "dev", "--", "--open"]
