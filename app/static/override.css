@@ -1,0 +1,29 @@
+:root {
+	--background: 221.7 16.3% 27.6%;
+	--foreground: 217.5 26.7% 94.1%;
+	--card: 221.7 16.3% 27.6%;
+	--card-foreground: 217.5 26.7% 94.1%;
+	--popover: 221.7 16.3% 27.6%;
+	--popover-foreground: 217.5 26.7% 94.1%;
+	--primary: 213.1 32% 52.2%;
+	--primary-foreground: 240 18.5% 94.7%;
+	--secondary: 178.7 25.1% 64.9%;
+	--secondary-foreground: 217.5 26.7% 94.1%;
+	--muted: 217.2 32.6% 17.5%;
+	--muted-foreground: 215 20.2% 65.1%;
+	--accent: 217.2 32.6% 17.5%;
+	--accent-foreground: 210 40% 98%;
+	--destructive: 354.3 42.3% 56.5%;
+	--destructive-foreground: 210 40% 98%;
+	--border: 220 16.5% 35.7%;
+	--input: 221.7 16.3% 27.6%;
+	--ring: 220 16.8% 31.6%;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(to bottom right, #5e81ac, #8fbcbb);
+	object-fit: scale-down;
+	background-position: center center;
+}

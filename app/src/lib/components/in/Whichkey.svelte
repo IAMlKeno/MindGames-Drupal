@@ -6,11 +6,15 @@
 	let {
 		onUrlSearchSelected,
 		onBookmarkSearchSelected,
-		onKeywordSearchSelected
+		onKeywordSearchSelected,
+    onNewIdea,
+    onSelectIdea,
 	}: {
 		onUrlSearchSelected: () => void;
 		onBookmarkSearchSelected: () => void;
 		onKeywordSearchSelected: () => void;
+    onNewIdea: () => void;
+    onSelectIdea: () => void;
 	} = $props();
 
 	let isOpen = $state(false);
@@ -24,26 +28,36 @@
 
 	async function onSpecialKeyPress(event: KeyboardEvent) {
 		if (event.key === '/') {
-			isOpen = false;
-			event.preventDefault();
-			event.stopPropagation();
-			onKeywordSearchSelected();
+      stopEventDefaults(event);
+      onKeywordSearchSelected();
 		}
 
 		if (event.key === 'u') {
-			isOpen = false;
-			event.preventDefault();
-			event.stopPropagation();
+      stopEventDefaults(event);
 			onUrlSearchSelected();
 		}
 
 		if (event.key === 'b') {
-			isOpen = false;
-			event.preventDefault();
-			event.stopPropagation();
-			onBookmarkSearchSelected();
-		}
-	}
+      stopEventDefaults(event);
+      onBookmarkSearchSelected();
+    }
+
+		if (event.key === 'a') {
+      stopEventDefaults(event);
+      onNewIdea();
+    }
+
+		if (event.key === 's') {
+      stopEventDefaults(event);
+      onSelectIdea();
+    }
+  }
+
+  function stopEventDefaults(event: KeyboardEvent) {
+    isOpen = false;
+    event.preventDefault();
+    event.stopPropagation();
+  }
 </script>
 
 <Dialog.Root bind:open={isOpen}>
@@ -63,6 +77,8 @@
 				<li>/ for keyword search</li>
 				<li>u to navigate to url</li>
 				<li>b to go to book marks</li>
+				<li>a to add new idea</li>
+				<li>s to select an idea</li>
 			</ul>
 		</div>
 	</Dialog.Content>

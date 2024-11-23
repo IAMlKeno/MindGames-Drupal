@@ -65,6 +65,15 @@
 		whichKey.close();
 		keywordSearch.open();
 	}}
+  onNewIdea ={() => {
+    whichKey.close();
+    console.log('NEW IDEA');
+    window.location.assign('/addIdea');
+  }}
+  onSelectIdea={() => {
+    whichKey.close();
+    console.log('SELECT IDEA');
+  }}
 />
 
 <svelte:window {onkeypress} />
