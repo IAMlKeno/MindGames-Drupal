@@ -1,7 +1,5 @@
-<!-- src/lib/components/MyForm.svelte -->
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import Textfield from "@smui/textfield";
   import * as Dialog from '$lib/components/ui/dialog';
 	import * as Command from '$lib/components/ui/command/index.js';
 

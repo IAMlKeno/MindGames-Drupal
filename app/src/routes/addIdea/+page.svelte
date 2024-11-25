@@ -1,6 +1,7 @@
 <script lang="ts">
   import IdeaForm from "$lib/forms/IdeaForm.svelte";
   import type { Idea } from "$lib/models/idea";
+  import { Input, Label, Helper, Button, Checkbox, A } from 'flowbite-svelte';
 
   // Initial form data
   const formData = {
@@ -47,6 +48,7 @@
       },
     }).then(() => window.location.assign("/"));
   }
+  let checked = true;
 </script>
 
 <main>
